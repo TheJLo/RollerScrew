@@ -1,0 +1,3 @@
+Roller Screw OpenSCAD Usage Manual
+
+This is a short Manual describing how to use the Roller Screw OpenSCAD and describing th structure of the OpenSCAD Folder
