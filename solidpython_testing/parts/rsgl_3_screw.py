@@ -18,7 +18,7 @@ class RSGL_Screw(RSGL_Part):
         self.__thread_spec  = thread_spec # Object containing information about the threads
         
     # Override generate_geometry()
-    def generate_geometry(self, fn):
+    def generate_geometry(self):
         g =  cylinder(d = self.__ref_diameter, h = self.__height, center=True)
         return g
     
