@@ -1,5 +1,6 @@
-.venv
-__pycache__
+**/.venv
+**/__pycache__
 *.scad
 *.stl
 *.gcode
+*.config # These are built using setup.py
