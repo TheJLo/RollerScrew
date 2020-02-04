@@ -17,11 +17,11 @@ plat = platform.system()
 if plat == 'Linux' or plat == 'Darwin':
     exe = "./.venv/bin/python3"
 elif plat == 'Windows': 
-    exe = "./.venv/Scripts/python3"
+    exe = "./.venv/Scripts/python"
 
 # First create virtual envrioment
 print('==== Creating Virtual Enviroment ====')
-venv.create(venv_dir, False, True, True, True, None)
+venv.create(venv_dir, False, True, False, True, None)
 
 # Install necessary packages from requirements.txt
 print('==== Installing packages ====')

@@ -20,6 +20,6 @@ if plat == 'Linux' or plat == 'Darwin':
     # *nix system
     path = "./.venv/bin/python3"
 elif plat == 'Windows':
-    path = "./.venv/Scripts/python3"
+    path = "./.venv/Scripts/python"
 
 subprocess.call([path, entry])
