@@ -1,4 +1,4 @@
-This is a testing branch for SolidPython as an alternative to OpenSCAD.
+Adjustable Roller Screw designed in SolidPython on top of OpenSCAD. The Roller Screws are intended to be 3D printed as either individual pieces or as one whole unit. 
 
 SolidPython is a wrapper over OpenSCAD which generates standalone OpenSCAD code using Python.
 The hopes is to create an easier to use, more adjustable, and more robust framework to develop the Roller Screw.
@@ -16,34 +16,11 @@ Intended Advantages:
 
 Install:
 
-Requires Python3
+Requires [Python3](https://www.python.org/)
 
- -  Setting up Virtual Enviroment (Linux 01/16/2020)
-    - Open a terminal to install location
-    - Type in the following
-        
-        Python3 -m venv .venv
-    
-    - This will create an invisible directory '.venv' in your current directory
-    - Use 'ls -a' to verify
-    - Switch into the virtual enviroment with the following command
-        
-        source .venv/bin/activate
-        
-    - The text '(.venv)' should appear before your bash prompt
-    - Install the required packages using the following command
-        
-        pip install -r requirements.txt
-        
-    - This will install all the needed modules into the virtual enviroment
-    - Use the 'deactivate' command to leave the virtual enviroment
-    
- - Running the python scripts
-    - Running the python scripts needs to be done within the virtual enviroment
-    - Go to the project directory
-    - Type the follwing command
-        
-        source .venv/bin/activate
-        
-    - The text '(.venv)' should appear before your bash prompt
-    - All python files can now be properly run from the terminal
+To install, run setup.py which will create a virtual enviroment and download all packages in requirements.txt
+After completion, the application can be run by running __main__.py or typing the following command in the command line
+
+```bash
+python3 .
+```
