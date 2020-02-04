@@ -1,5 +1,7 @@
 **/.venv
 **/__pycache__
+**/.DS_Store
+
 *.scad
 *.stl
 *.gcode

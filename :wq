@@ -21,7 +21,7 @@ elif plat == 'Windows':
 
 # First create virtual envrioment
 print('==== Creating Virtual Enviroment ====')
-venv.create(venv_dir, False, True, True, True, None)
+venv.create(venv_dir, True, True, True, False, True, None)
 
 # Install necessary packages from requirements.txt
 print('==== Installing packages ====')
