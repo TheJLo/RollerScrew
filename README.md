@@ -19,7 +19,7 @@ Install:
 Requires [Python3](https://www.python.org/)
 
 To install, run setup.py which will create a virtual enviroment and download all packages in requirements.txt
-After completion, the application can be run by running __main__.py or typing the following command in the command line
+After completion, the application can be run by running `__main__.py` or typing the following command in the command line
 
 ```bash
 python3 .
