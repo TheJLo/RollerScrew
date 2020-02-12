@@ -14,7 +14,7 @@ import subprocess
 
 plat = platform.system()    # Could get these from a install file
 
-entry = './src/test.py'
+entry = './src/rsgl_assembly.py'
 
 if plat == 'Linux' or plat == 'Darwin':
     # *nix system

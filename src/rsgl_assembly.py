@@ -6,7 +6,11 @@ from solid import *
 from solid.utils import *   # Not required, but the utils module is useful
                             # During optimization ( if needed ), change the * to a list of only the required functions
 
-from rsgl_parts import *
+#from rsgl_parts import *
+
+from rsgl_nut import *
+from rsgl_screw import *
+from rsgl_roller import *
 
 import math
 
