@@ -1,4 +1,5 @@
 from rsgl_parts import *
+from rsgl_tools import *
 
 # Planetary Rollers
 # Will consist of the threads, gears, and stubs
@@ -15,6 +16,9 @@ class RSGL_Roller(RSGL_Part):
     def generate_geometry(self):
         # - and -= is a difference operator
         g =  cylinder(d = self.__ref_diameter, h = self.__height, center=True)
+        
+        g += gears.stirnrad (modul=0.5, zahnzahl=30, breite=5, bohrung=0, eingriffswinkel=20, schraegungswinkel=0, optimiert=False);
+        
         return g
     
     # Getter and Setter Methods
