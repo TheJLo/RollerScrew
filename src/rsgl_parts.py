@@ -1,8 +1,27 @@
+#!/usr/bin/env python3
+
 # Generic Part Class
 
 # Import SolidPython
 from solid import *
 from solid.utils import *
+
+# .scad library folder
+lib = "./libs"
+
+# .scad files
+thread_file = "thread.scad"
+gear_file   = "Getriebe.scad"
+
+threads = import_scad('./libs/threads.scad')
+gears   = import_scad('./libs/Getriebe.scad')
+
+class RSGL_thread_spec:
+    # https://dkprojects.net/openscad-threads/
+    def __init__(self, pitch, starts):
+        self._pitch = pitch
+        self._starts = starts
+        print('Creating Thread Spec')
 
 # This class acts more as a specification and generator for the geometry than as a representation of the actual objects.
 # Each part needs to be self-contained and run without information from the other parts (directly)
@@ -38,6 +57,39 @@ class RSGL_Part:
         print('Rendering to %s' % path)
         
 # Putting all other extension classes in here because holy crap does importing stuff suck
+
+class RSGL_Thread(RSGL_Part):
+    __fuck_you = 3
+    def __init__(self, ref_dia = 10):
+        print('FUCK YOU')
+        
+
+    #def __init__(self, ref_diameter, lead, starts, length):
+        
+        #self.__ref_dia      = ref_diameter
+        #self.__lead         = lead
+        #self.__starts       = starts
+        #self.__length       = length
+        #self.__taper        = taper
+        #self.__ends         = end_taper
+        #self.__lead_angle   = lead_angle
+        #self.__groove       = groove
+
+    #def generate_geometry(self):
+    #    return self.generate_geometry(False)
+
+    #def generate_geometry(self, internal):
+     #   g = metric_thread(
+      #      diameter    = self.__ref_diameter, 
+       #     pitch       = self.__lead / self.__starts,
+        #    length      = self.__length,
+         #   n_starts    = self.__starts,
+          #  taper       = self.__taper,
+           # leadin      = self.__ends,
+           # angle       = self.__lead_angle,
+           # groove      = self.__groove,
+           # internal    = internal)
+        #return g
 
 # The outer nut assembly* containing the rollers
 # Forms the raceway for the planetary rollers and acts as the primary body of the screw
@@ -103,7 +155,12 @@ class RSGL_Screw(RSGL_Part):
         
     # Override generate_geometry()
     def generate_geometry(self):
-        g =  cylinder(d = self.__ref_diameter, h = self.__height, center=True)
+        g = threads.metric_thread(
+                diameter = self.__ref_diameter,
+                pitch    = self.__thread_spec._pitch,
+                length   = self.__height,
+                n_starts = self.__thread_spec._starts
+                )
         return g
     
     # Getter and Setter Methods

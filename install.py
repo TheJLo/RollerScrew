@@ -8,6 +8,7 @@
 import venv
 import platform
 import subprocess
+import configparser
 
 venv_dir = "./.venv" # Default, can change this to be argument later
 
@@ -37,5 +38,16 @@ f.write('venv=%s\n' % venv_dir)
 f.write('exe=%s\n' % exe)
 
 f.close()
+# Using Config parser
+config = configparser.ConfigParser()
+config['VENV'] = {
+    'Directory' : venv_dir,
+    'Executable' : exe}
+
+with open('config.ini', 'w') as conf:
+    config.write(conf)
+
+                    
+
 print('==== Install Complete ====')
 

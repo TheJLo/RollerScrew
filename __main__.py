@@ -7,6 +7,7 @@
 
 import platform
 import subprocess
+import configparser
 
 # First, check that install was run
 
@@ -14,12 +15,14 @@ import subprocess
 
 plat = platform.system()    # Could get these from a install file
 
-entry = './src/test.py'
+entry = './src/rsgl_assembly.py'
 
 if plat == 'Linux' or plat == 'Darwin':
     # *nix system
     path = "./.venv/bin/python3"
 elif plat == 'Windows':
     path = "./.venv/Scripts/python"
+
+
 
 subprocess.call([path, entry])

@@ -10,6 +10,8 @@ from rsgl_parts import *
 
 import math
 
+import rsgl_nut
+
 # Main Running Program
 
 # ---- Argument Setup (POSIX/Linux) ----
@@ -44,8 +46,8 @@ import math
 
 # Metric
 mm = 1.0                                    # Default Unit for OpenSCAD
-cm = 10.0                                   # Centimeter
-dm = 100.0                                  # Decimeter (rarely used)
+dm = 10.0                                   # Decimeter (rarely used)
+cm = 100.0                                  # Centimeter
 m  = 1000.0                                 # Meter (for big bois)
 
 # Imperial
@@ -97,31 +99,39 @@ rsgl_desired_num_rollers    = 30            # Some ridiculous number for testing
 
 # ---- Parsing Argument ----
 #print('Parsing Arguments...')
-SEGMENTS = 100
+SEGMENTS = 50
 
 nut_spec = RSGL_Nut(rsgl_nut_inner_diameter + 5, rsgl_nut_inner_diameter, rsgl_total_height, rsgl_nut_housing)
 
-center_screw_spec = RSGL_Screw(rsgl_central_screw_diameter, rsgl_central_screw_height, None)
+center_screw_spec = RSGL_Screw(
+    rsgl_central_screw_diameter,
+    rsgl_central_screw_height,
+    RSGL_thread_spec(
+        pitch = rsgl_central_screw_lead / rsgl_central_screw_starts,
+        starts = rsgl_central_screw_starts)
+    )
 
 roller_spec = RSGL_Roller(rsgl_roller_diameter, rsgl_total_height, None, None)
 
 num_rollers = min(rsgl_desired_num_rollers, rsgl_max_num_rollers)
 
-geo = union() # Create Blank object
-for i in range(num_rollers):
-    angle = i * (360 / rsgl_max_num_rollers)
-    geo += rotate((0, 0, angle))(
-            translate((rsgl_roller_center_distance, 0, 0))(
-                rotate((0, 0, -angle))(
-                    roller_spec.generate_geometry()
-                )
-            )
-        )
-    
-geo += nut_spec.generate_geometry()
-geo += center_screw_spec.generate_geometry()
+# ---- Testing stuff ----
 
+testing = True
+
+test_part = 1       # 0 = None, 1 = Nut, 2 = Roller, 3 = Shaft
+
+# ---- Generate and Assembly Stuff ----
+geo = union()
+if testing: # Do a test part
+    if test_part == 0:
+        print('Just a test!')
+    elif test_part == 1: # Generate the Nut
+        print('Nut')
+        test = RSGL_Test()
+    elif test_part == 2: # Generate the Roller
+        print('Roller')
+    elif test_part == 3: # Generate the Shaft
+        print('Shaft')
+        geo = center_screw_spec.generate_geometry()
 scad_render_to_file(geo, filepath = 'Test1.scad', file_header=f'$fn = {SEGMENTS};')
-
-
-
