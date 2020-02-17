@@ -1,27 +1,10 @@
 #!/usr/bin/env python3
-
 # Generic Part Class
-
 # Import SolidPython
 from solid import *
 from solid.utils import *
 
-# .scad library folder
-lib = "./libs"
-
-# .scad files
-thread_file = "thread.scad"
-gear_file   = "Getriebe.scad"
-
-threads = import_scad('./libs/threads.scad')
-gears   = import_scad('./libs/Getriebe.scad')
-
-class RSGL_thread_spec:
-    # https://dkprojects.net/openscad-threads/
-    def __init__(self, pitch, starts):
-        self._pitch = pitch
-        self._starts = starts
-        print('Creating Thread Spec')
+from rsgl_tools import *
 
 # This class acts more as a specification and generator for the geometry than as a representation of the actual objects.
 # Each part needs to be self-contained and run without information from the other parts (directly)
@@ -54,4 +37,4 @@ class RSGL_Part:
     def render_to_stl(self, path, fn):
         self.render_to_file(path + 'scad')
         raise NotImplementedError('Rendering to STL file has not been implemented yet.')
-        print('Rendering to %s' % path)
+        #print('Rendering to %s' % path)

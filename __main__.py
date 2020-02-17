@@ -17,12 +17,11 @@ plat = platform.system()    # Could get these from a install file
 
 entry = './src/rsgl_assembly.py'
 
-if plat == 'Linux' or plat == 'Darwin':
-    # *nix system
-    path = "./.venv/bin/python3"
-elif plat == 'Windows':
-    path = "./.venv/Scripts/python"
+config_file = './config.ini'
 
+config = configparser.ConfigParser()
+config.read(config_file)
 
+path = config['VENV']['Executable']
 
 subprocess.call([path, entry])

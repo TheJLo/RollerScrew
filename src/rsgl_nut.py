@@ -29,3 +29,5 @@ class RSGL_Nut(RSGL_Part):
     # Getter values can be used on private, calculated values
     # Setters can only be used on specification (constant) values
         # For later - jmloss 01/17/2020 
+
+
