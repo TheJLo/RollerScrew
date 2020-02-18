@@ -11,6 +11,7 @@ from solid.utils import *   # Not required, but the utils module is useful
 from rsgl_nut import *
 from rsgl_screw import *
 from rsgl_roller import *
+from rsgl_thread import *
 
 import math
 
@@ -78,7 +79,7 @@ RENDER_TESTS                = RENDER_HOUSING ^ RENDER_GEAR ^ RENDER_THREAD
 
 output_dir                  = "./output"    # Output directory
 
-render_mode                 = RENDER_TESTS
+render_mode                 = RENDER_TESTS ^ RENDER_SCREW
 
 SEGMENTS                    = 25            # Quality [10 - 100] WARNING: Do NOT go past 100, already takes a long time at 100
 
@@ -189,7 +190,10 @@ if bool(render_mode & RENDER_ASM):      # Make its own function to use so that w
     
 if bool(render_mode & RENDER_SCREW):
     print('Rendering Screw to             %s'          % screw_path)
-    
+    th = RSGL_Thread() # Lead = 10, angle = 30, taper = 0, size = -1, rect_thread = False, rectangle = 0
+    screw = RSGL_Screw(10, 40, th)
+    g = screw.generate_geometry()
+    scad_render_to_file(g, screw_path)
     
 if bool(render_mode & RENDER_NUT):
     print('Rendering Nut to               %s'          % nut_path)
@@ -208,3 +212,6 @@ if bool(render_mode & RENDER_GEAR):
     
 if bool(render_mode & RENDER_THREAD):
     print('Rendering Test Threads to      %s'          % test_threads_path)
+    th = RSGL_Thread() # Lead = 10, angle = 30, taper = 0, size = -1, rect_thread = False, rectangle = 1
+    g = th.generate_geometry(20, 40) # ref_dia = 20, length = 40
+    scad_render_to_file(g, test_threads_path)
