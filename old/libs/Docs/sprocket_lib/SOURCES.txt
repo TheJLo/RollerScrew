@@ -1,3 +1,0 @@
-Sources for Sprocket Generator V2 - OpenSCAD
-
-Sprocket generator OpenSCAD (https://www.thingiverse.com/thing:1077974)
