@@ -20,6 +20,9 @@ Prerequisites:
 	- [Python3](https://www.python.org/)
 	- [OpenSCAD](https://www.openscad.org/) 
 
-
 To install, run setup.py which will create a virtual enviroment and download all packages in requirements.txt
 After completion, the application can be run by running `__main__.py` or typing the following command in the command line: `python3 .`
+
+Libraries:
+    - [threads.scad](https://dkprojects.net/openscad-threads/), Threads
+    - [Getriebe.scad](https://www.thingiverse.com/thing:1604369), Gears

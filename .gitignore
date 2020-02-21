@@ -5,4 +5,4 @@
 *.scad
 *.stl
 *.gcode
-*.config # These are built using setup.py
+*.ini
