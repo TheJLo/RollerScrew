@@ -79,7 +79,7 @@ RENDER_TESTS                = RENDER_HOUSING ^ RENDER_GEAR ^ RENDER_THREAD
 
 output_dir                  = "./output"    # Output directory
 
-render_mode                 = RENDER_TESTS ^ RENDER_SCREW
+render_mode                 = RENDER_THREAD
 
 SEGMENTS                    = 25            # Quality [10 - 100] WARNING: Do NOT go past 100, already takes a long time at 100
 
@@ -213,5 +213,28 @@ if bool(render_mode & RENDER_GEAR):
 if bool(render_mode & RENDER_THREAD):
     print('Rendering Test Threads to      %s'          % test_threads_path)
     th = RSGL_Thread() # Lead = 10, angle = 30, taper = 0, size = -1, rect_thread = False, rectangle = 1
-    g = th.generate_geometry(20, 40) # ref_dia = 20, length = 40
+    
+    # Default Test generate_geometry
+    th_test = th.generate_geometry()
+    
+    # Thread and Nut Test
+    th_Ex1 = th.generate_geometry(ref_dia = 20, length = 40) # ref_dia = 20, length = 40
+    th_In1 = th.generate_geometry(ref_dia = 20, length = 20, internal = True)
+    nut1   = cylinder(d = 25, h = 20, segments = 6, center = False)
+    nut1  -= th_In1
+    
+    nut1   = translate([30, -15, 0])(nut1)
+    th_Ex1 = translate([30,  15, 0])(th_Ex1)
+    
+    # Print in Place Test
+    th_Ex2 = th.generate_geometry(ref_dia = 20, length = 40) # ref_dia = 20, length = 40
+    th_In2 = th.generate_geometry(ref_dia = 20, length = 20, internal = True)
+    nut2   = cylinder(d = 25, h = 20, segments = 6, center = False)
+    nut2  -= th_In1
+    
+    nut2   = translate([-30, 0, 0])(nut2)
+    th_Ex2 = translate([-30, 0, 0])(th_Ex2)
+    
+    g = th_test + nut1 + th_Ex1 + nut2 + th_Ex2
+    
     scad_render_to_file(g, test_threads_path)

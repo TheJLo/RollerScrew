@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 
 from rsgl_parts import *
@@ -10,7 +11,7 @@ CHAMFER_NEG_Z   = 3
 
 class RSGL_Thread(RSGL_Part):
     
-    def __init__(self, lead = 10, angle = 30, taper = 0, size = -1, rect_thread = False, rectangle = 0):
+    def __init__(self, lead = 1, angle = 30, taper = 0, size = -1, rect_thread = False, rectangle = 0):
         self._lead          = lead      # Lead of the screw (mm / rev)
         self._angle         = angle     # Angle of the thread triangle
         self._taper         = taper
@@ -31,7 +32,7 @@ class RSGL_Thread(RSGL_Part):
         print('Generating')
         
         if ref_dia <= 0:
-            ref_dia = self._lead
+            ref_dia = self._lead * 10
             
         if length <= 0:
             length = self._lead * 2
